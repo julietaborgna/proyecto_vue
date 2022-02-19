@@ -1,0 +1,86 @@
+<HTML5>
+        <head>
+            <meta charset="UTF-8">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge">
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <!-- VUE CDN-->
+           <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+           <title>Clase 1</title>
+             </head>
+             <body>
+
+<div id="app">
+    <!--DIRECTIVAS-->
+    <!--DIRECTIVA V-TEXT-->
+<p v-text="text"></p>
+<!--DIRECTIVA V-HTML-->
+<ul v-html="items"></ul>
+<!--DIRECTIVA V-BIND-->
+<img v-bind:src="photoUrl" v-bind:alt="alt"></img>
+<!--B-VIND DINAMICO-->
+<img v-bind:src="photoUrl" v-bind:[key]="alt"></img>
+<!--v-bind sirva para cualquier atributo x ejemplo style/class-->
+<p v-bind:style="myStyle">Actualizo mi color</p>
+
+
+<!--methods(muchas funciones a la vez) y on-click-->
+  <button type="button" v-on:click="saludar">
+Mostrar Saludo
+</button>
+<!-- on click accediendo a la información del evento-->
+<button type="button" v-on:click="saludarDos($event)">
+Mostrar Saludos dos
+    </button>
+
+    <!-- Acceder a data desde los methods -->
+    <button type="button" v-on:click="showName">
+        Mostrar Nombre
+        </button>
+
+</div>
+
+<!-- propiedades computadas -->
+<div class="content">
+    {{ nombreCompleto }}
+</div>
+
+
+         <script>
+             // instanciar VUE
+             const app = new Vue ({
+                 el: '#app',
+                 data: {
+                     text: 'clase 1',
+                     items: '<li> Mis Servicios</li>',
+                     photoUrl: 'https://www.placecage.com/g/200/300',
+                     alt: 'Nicolas Cage',
+                     key: 'title',
+                     myStyle: 'color: green',
+                     firstName: 'Niki',
+                     lastName: 'Nudes',
+                 },
+                 methods: {
+                     saludar () {
+                         alert('Hola');
+                     },
+                     saludarDos(event) {
+                         alert('Coordenadas del botón ' + event.screenX
+                          + '  ' + event.screenY);
+                     },
+                     showName () {
+                         alert(this.firstName + ' ' +
+                          this.lastName);
+                     }
+                     
+                 },
+                 computed: {
+                    nombreCompleto () {
+                         return this.firstName + ' ' + 
+                         this.lastName;
+                     }
+
+                 }
+             }) 
+         </script>
+             </body>
+  </HTML5>
